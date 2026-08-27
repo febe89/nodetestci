@@ -3,18 +3,22 @@ name: CI pipeline
 on:
   push:
     branches: [main]
+
 jobs:
   test:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Check repo code
-      uses: actions/checkout@v4
+    name: Test node app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check repo code
+        uses: actions/checkout@v4
 
-    - name: Setup up Node.jobs
-      uses: actions/setup-node@v4
-      with:
-        node-node-version: "20"
-    - name: Install Dependencies
-      run: npm install
-    - name: Run automated tests
-      run: npm tests
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run automated tests
+        run: npm test
